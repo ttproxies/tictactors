@@ -14,9 +14,11 @@ fn print_board(board: [[char; BOARD_WIDTH]; BOARD_HEIGHT]) {
 fn main() {
     let human_mark = std::env::args().nth(1).expect("No mark specified [X, O]");
 
-    if !ALLOWED_MARKS.contains(human_mark) {
-        println!("Invalid mark specified (must be X or O");
+    if human_mark.len() != 0 ||!ALLOWED_MARKS.contains(human_mark.to_lowercase()) {
+        panic!("Invalid mark specified (must be X or O");
     }
+
+    let human_mark = human_mark.chars().next().unwrap();
     
     let mut board = [['-'; 3]; 3];
     
